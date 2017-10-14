@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3transition与animation</title>
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		p{
+			width: 100px;
+			height: 100px;
+			margin: 20px auto;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" v-model="show">
+		<transition-group name="fade" enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+			<p v-show="show" class="animated" v-for="(val,index) in lists" :key="index">{{val}}->{{index}}</p>
+		</transition-group>
+	</div>
+	<!-- v-show="show"
+	空字符串转为false布尔
+	非空字符串转为true -->
+</body>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		var vm = new Vue({
+			el:'#box',
+			data:{
+				show:'',
+				list:['apple','orange','peach','cell']
+			},
+			computed:{
+				lists:function(){
+					var arr = [];
+					this.list.forEach(function(val){
+						if(val.indexOf(this.show)!=-1){
+							arr.push(val);
+						}
+					}.bind(this));
+					return arr;
+				}
+			}
+		});
+	}
+</script>
+</html>

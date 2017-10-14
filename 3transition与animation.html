@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3transition与animation</title>
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		p{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="显示隐藏" @click="show=!show">
+		<transition name="fade" enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+			<p v-show="show" class="animated"></p>
+		</transition>
+	</div>
+</body>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		var vm = new Vue({
+			el:'#box',
+			data:{
+				show:false
+			},
+			methods:{
+				
+			}
+		});
+	}
+</script>
+</html>
