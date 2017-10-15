@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6router</title>
+</head>
+<body>
+	<div id="box">
+		<div class="nav">
+			<router-link>主页</router-link>
+			<router-link>新闻</router-link>
+		</div>
+	</div>
+	<div class="view">
+		<router-view></router-view>
+	</div>
+	<template id="home">
+		<div>
+			<h1>这是主页</h1>
+		</div>
+	</template>
+	<template id="news">
+		<div>
+			<h1>这是新闻</h1>
+		</div>
+	</template>
+</body>
+<script type="text/javascript" src="js/vue2.js"></script>
+<script type="text/javascript" src="js/vue-router.js"></script>
+<script type="text/javascript" src="js/vue-router.min.js"></script>
+<script type="text/javascript">
+	//创建组件 
+	var Home = {
+		template:'#home'
+	}
+	var News = {
+		template:'#news'
+	}
+
+	// 配置路由
+	const routes = [
+		{path:'/home',component:Home},
+		{path:'/news',component:news},
+		{path:'*',redirect:'/home'}
+	]	
+
+	// 创建路由实例
+	const router = new VueRouter({
+		routes
+	});
+
+	// 路由挂载到vue上
+	var vm = new Vue({
+		router,
+		el:'#box',
+	});
+</script>
+</html>
